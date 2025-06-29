@@ -1,6 +1,6 @@
 import django_filters
 from django.db import models
-from ..models import Customer, Product, Order
+from .models import Customer, Product, Order
 
 
 class CustomerFilter(django_filters.FilterSet):

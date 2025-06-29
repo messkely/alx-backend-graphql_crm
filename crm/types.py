@@ -2,7 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphene import relay
 
-from ..models import Customer, Product, Order
+from .models import Customer, Product, Order
 
 class CustomerType(DjangoObjectType):
     class Meta:

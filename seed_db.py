@@ -6,7 +6,7 @@ from decimal import Decimal
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alx_backend_graphql_crm.settings')
 django.setup()
 
-from models import Customer, Product, Order
+from crm.models import Customer, Product, Order
 
 
 def seed_database():

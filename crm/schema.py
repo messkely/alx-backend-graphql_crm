@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from decimal import Decimal
 import re
-from ..models import Customer, Product, Order
+from .models import Customer, Product, Order
 from .filters import CustomerFilter, ProductFilter, OrderFilter
 
 
