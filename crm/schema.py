@@ -6,6 +6,7 @@ from django.db import transaction
 from decimal import Decimal
 import re
 from .models import Customer, Product, Order
+from crm.models import Product
 from .filters import CustomerFilter, ProductFilter, OrderFilter
 
 
@@ -320,9 +321,24 @@ class Query(graphene.ObjectType):
             return None
 
 
+
+class UpdateLowStockProducts(graphene.Mutation):
+    success = graphene.String()
+    updated = graphene.List(graphene.String)
+
+    def mutate(self, info):
+        updated_products = []
+        for product in Product.objects.filter(stock__lt=10):
+            product.stock += 10
+            product.save()
+            updated_products.append(f"{product.name}: {product.stock}")
+        return UpdateLowStockProducts(success="Stock updated", updated=updated_products)
+
+    
 # Mutations
 class Mutation(graphene.ObjectType):
     create_customer = CreateCustomer.Field()
     bulk_create_customers = BulkCreateCustomers.Field()
     create_product = CreateProduct.Field()
     create_order = CreateOrder.Field()
+	update_low_stock_products = UpdateLowStockProducts.Field()

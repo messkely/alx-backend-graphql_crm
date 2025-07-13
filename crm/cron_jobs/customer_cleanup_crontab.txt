@@ -1,0 +1,1 @@
+0 2 * * 0 /absolute/path/to/clean_inactive_customers.sh >> /tmp/cleanup_output.log 2>&1

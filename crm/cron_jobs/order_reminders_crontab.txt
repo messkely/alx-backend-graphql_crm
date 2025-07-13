@@ -1,0 +1,1 @@
+0 8 * * * /absolute/path/to/send_order_reminders.py >> /tmp/order_reminders_output.log 2>&1
