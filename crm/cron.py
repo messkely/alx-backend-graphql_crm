@@ -13,7 +13,6 @@ def log_crm_heartbeat():
     with open('/tmp/crm_heartbeat_log.txt', 'a') as f:
         f.write(f"{timestamp} CRM is alive - Status: {status}\n")
 
-
 def update_low_stock():
     client = Client(
         transport=RequestsHTTPTransport(url="http://localhost:8000/graphql", verify=False),

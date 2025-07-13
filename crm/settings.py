@@ -61,7 +61,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'crm.wsgi.application'
 
-# Database (example using SQLite)
+# Database example (SQLite)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -69,29 +69,25 @@ DATABASES = {
     }
 }
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = []
 
-# Internationalization
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'  # Change to your preferred timezone
+TIME_ZONE = 'UTC'  # Change as needed
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static files
 STATIC_URL = '/static/'
 
-# Graphene GraphQL settings
+# Graphene schema
 GRAPHENE = {
-    'SCHEMA': 'crm.schema.schema'
+    'SCHEMA': 'crm.schema.schema'  # your main schema object (make sure you expose it)
 }
 
-# Cron jobs: run heartbeat every 5 minutes and update stock every 12 hours
+# Cron jobs setup
 CRONJOBS = [
     ('*/5 * * * *', 'crm.cron.log_crm_heartbeat'),
     ('0 */12 * * *', 'crm.cron.update_low_stock'),
 ]
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
