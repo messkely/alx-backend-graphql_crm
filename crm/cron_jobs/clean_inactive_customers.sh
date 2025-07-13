@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# Set current directory to script location
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR/../.." || exit 1  # Go to project root
+# Get current working directory of the script (cwd = current working directory)
+cwd="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$cwd/../.." || exit 1  # Navigate to Django project root
 
-# Activate virtualenv if needed (optional)
-# source venv/bin/activate
-
-# Run Django shell command to delete customers
+# Run cleanup via Django shell
 deleted=$(python3 manage.py shell <<EOF
 from datetime import timedelta
 from django.utils import timezone
@@ -25,7 +22,7 @@ EOF
 # Logging
 timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
-# Use conditional logic to verify deletion
+# Check and log result
 if [ "$deleted" -ge 0 ]; then
     echo "$timestamp - Deleted $deleted inactive customers" >> /tmp/customer_cleanup_log.txt
 else
